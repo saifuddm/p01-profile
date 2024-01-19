@@ -9,32 +9,35 @@ function App() {
     );
   }
 
-
   interface DateProps {
-    date: string,
+    date: string;
   }
 
   function Date(props: DateProps) {
-
-    return(
+    return (
       <>
-      <span className="animate-pulse">
-        {props.date}
-      </span>
+        <span className="animate-pulse">{props.date}</span>
       </>
-    )
+    );
   }
 
-  function Links(props: {text:string, link:string}){
-    return(
+  function Links(props: { text: string; link: string }) {
+    return (
       <>
-      <span>[<span className="text-links">
-        <a href={props.link} target="_blank" rel="noopener noreferrer">{props.text}</a></span>]({props.link})</span>
+        <p className="break-words">
+          [
+          <span className="text-links">
+            <a href={props.link} target="_blank" rel="noopener noreferrer">
+              {props.text}
+            </a>
+          </span>
+          ]({props.link})
+        </p>
       </>
-    )
+    );
   }
 
-  const variant = " ml-8 list-disc list-outside "
+  const variant = " ml-8 list-disc list-outside ";
 
   return (
     <>
@@ -54,55 +57,82 @@ function App() {
           <li>Curious</li>
         </ul>
         <ul className={variant}>
-          <li><span className="underline">Horriable</span> at spelling</li>
-          <li>Procrastinate, Though of since: <Date date="18 Jan 24" /></li>
+          <li>
+            <span className="underline">Horriable</span> at spelling
+          </li>
+          <li>
+            Procrastinate, Though of since: <Date date="18 Jan 24" />
+          </li>
         </ul>
         <br />
         <h2 className=" text-4xl">## Links</h2>
         <ul className=" ml-8 list-disc list-outside">
-          <li><Links text="Github" link="https://github.com/saifuddm"/></li>
-          <li><Links text="LinkedIn" link="https://www.linkedin.com/in/saifuddm"/></li>
+          <li>
+            <Links text="Github" link="https://github.com/saifuddm" />
+          </li>
+          <li>
+            <Links
+              text="LinkedIn"
+              link="https://www.linkedin.com/in/saifuddm"
+            />
+          </li>
         </ul>
         <Divider />
         <h1 className=" text-6xl"># Projects</h1>
         <br />
         <h2 className=" text-4xl">## Coming Soon ...</h2>
         <br />
-        <h2 className=" text-4xl">## <Links text="Soco" link="https://github.com/SocialContracts/menu"/></h2>
+        <h2 className=" text-4xl ">
+          ##{" "}
+          <Links text="Soco" link="https://github.com/SocialContracts/menu" />
+        </h2>
         <ul className={variant}>
-              <li>React</li>
-              <li>Firebase</li>
-              <li>JS</li>
-            </ul>
+          <li>React</li>
+          <li>Firebase</li>
+          <li>JS</li>
+        </ul>
         <Divider />
         <h1 className=" text-6xl"># Intrests</h1>
         <br />
         <h2 className=" text-4xl">## Coded/Designed</h2>
         <ul className={variant}>
-          <li>Last Engaged: <Date date="19 Jan 24" /></li>
+          <li>
+            Last Engaged: <Date date="19 Jan 24" />
+          </li>
         </ul>
         <br />
         <h2 className=" text-4xl">## Watching Tech YT</h2>
         <ul className={variant}>
-          <li>Last Engaged: <Date date="18 Jan 24" /></li>
+          <li>
+            Last Engaged: <Date date="18 Jan 24" />
+          </li>
         </ul>
         <br />
         <h2 className=" text-4xl">## Cooking</h2>
         <ul className={variant}>
-          <li>Last Engaged: <Date date="19 Jan 24" /></li>
+          <li>
+            Last Engaged: <Date date="19 Jan 24" />
+          </li>
         </ul>
         <Divider />
         <h1 className=" text-6xl"># Relax</h1>
         <br />
+        <Links
+          text="Lofi Chill"
+          link="https://www.youtube.com/watch?v=rMBPCPE9_Xc"
+        />
+        <br />
+        <br />
+        <br />
         <p>
-          <Links text="Lofi Chill" link="https://www.youtube.com/watch?v=rMBPCPE9_Xc" />
+          * Sorry when I get better at responsive design this will be better.
         </p>
         <br />
-        <br />
-        <br />
-        <p>* Sorry when I get better at responsive design this will be better.</p>
-        <br />
-        <input type="text" placeholder="HAVE A NICE DAY" className="w-full animate-pulse bg-transparent text-links" />
+        <input
+          type="text"
+          placeholder="HAVE A NICE DAY"
+          className="w-full animate-pulse bg-transparent text-links"
+        />
       </div>
     </>
   );
