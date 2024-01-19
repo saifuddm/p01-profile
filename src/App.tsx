@@ -38,7 +38,7 @@ function App() {
 
   return (
     <>
-      <div className="font-main text-xl">
+      <div className="font-main text-xl text-white">
         <h1 className=" text-6xl">
           # <span className="underline">About</span>
         </h1>
