@@ -24,7 +24,7 @@ function App() {
   function Links(props: { text: string; link: string }) {
     return (
       <>
-        <p className="break-words">
+        <span className=" break-words">
           [
           <span className="text-links">
             <a href={props.link} target="_blank" rel="noopener noreferrer">
@@ -32,7 +32,7 @@ function App() {
             </a>
           </span>
           ]({props.link})
-        </p>
+        </span>
       </>
     );
   }
