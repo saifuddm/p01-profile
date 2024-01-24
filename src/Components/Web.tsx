@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Web() {
   const [SelectedHorizontal, setSelectedHorizontal] = useState(0);
   const [SelectedVertical, setSelectedVertical] = useState(0);
 
   useEffect(() => {
-    const handleKeyPress = (event) => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      console.log(event)
       if (event.key === "ArrowRight") {
         setSelectedHorizontal((prev) => prev + 1);
       }
@@ -139,7 +140,7 @@ export default function Web() {
             <VerticalSelectorList />
           </div>
           <div className="border border-gold-600 h-full rounded-xl w-2/6 ml-5 p-10 break-words">
-            {MiniScreenContent.filter((val,index) => {
+            {MiniScreenContent.filter((_val,index) => {
               if(SelectedVertical % MiniScreenContent.length == index){
                 return true
               }
