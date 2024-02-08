@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Divider from "./Divider";
 
 function ProjectsSection() {
-  const ulStyling = " ml-8 list-disc list-outside ";
+  // const ulStyling = " ml-8 list-disc list-outside ";
   const listLabel = ["Projects", "Extra"];
   const miniScreenList = [<MiniScreenOne />, <MiniScreenTwo />];
   const [Animate, setAnimate] = useState(false);
