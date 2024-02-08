@@ -1,16 +1,34 @@
+import { useEffect, useState } from "react";
 import Divider from "./Divider";
 
-interface ProjectsSection {
-  index: number;
-}
-
-function ProjectsSection(props: ProjectsSection) {
+function ProjectsSection() {
   const ulStyling = " ml-8 list-disc list-outside ";
   const listLabel = ["Projects", "Extra"];
   const miniScreenList = [<MiniScreenOne />, <MiniScreenTwo />];
+  const [Animate, setAnimate] = useState(false);
+  const [SelectedVertical, setSelectedVertical] = useState(0);
+
+  //Handle key up and down
+  useEffect(() => {
+    const handleKeyPressVertical = (event: KeyboardEvent) => {
+      if (event.key === "ArrowDown") {
+        miniScreenSwitch(event);
+      }
+      if (event.key === "ArrowUp") {
+        miniScreenSwitch(event);
+      }
+    };
+
+    //Attach
+    window.addEventListener("keydown", handleKeyPressVertical);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyPressVertical);
+    };
+  }, []);
 
   const activeStyling = (index: number) => {
-    if (props.index % listLabel.length == index) {
+    if (SelectedVertical % listLabel.length == index) {
       return " animate-pulse";
     }
     return " opacity-0";
@@ -23,6 +41,27 @@ function ProjectsSection(props: ProjectsSection) {
   function MiniScreenTwo() {
     return <>TEST</>;
   }
+
+  const animationStyling = Animate
+    ? " blur-lg -translate-x-full opacity-0"
+    : " ";
+
+  const miniScreenSwitch = (event: KeyboardEvent) => {
+    setAnimate(true);
+
+    if (event.key === "ArrowDown") {
+      setTimeout(() => {
+        setSelectedVertical((prev) => (prev == 1 ? prev : prev + 1));
+        setAnimate(false);
+      }, 150);
+    }
+    if (event.key === "ArrowUp") {
+      setTimeout(() => {
+        setSelectedVertical((prev) => (prev == 0 ? prev : prev - 1));
+        setAnimate(false);
+      }, 150);
+    }
+  };
   return (
     <>
       <div className="border  h-full rounded-xl flex-grow p-10 items-center content-center">
@@ -37,8 +76,15 @@ function ProjectsSection(props: ProjectsSection) {
           <span className="font-extrabold">{listLabel[1]}</span>
         </div>
       </div>
-      <div className="border border-gold-600 h-full rounded-xl w-2/6 ml-5 p-10 break-words">
-        {miniScreenList[props.index]}
+      <div className="h-full w-2/6 ml-5 overflow-clip">
+        <div
+          className={
+            `border border-gold-600 h-full rounded-xl w-full p-10 break-words transition-all ` +
+            animationStyling
+          }
+        >
+          {miniScreenList[SelectedVertical]}
+        </div>
       </div>
     </>
   );
