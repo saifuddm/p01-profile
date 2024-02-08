@@ -1,4 +1,4 @@
-import Web from "./Components/Web";
+import Web from "./Pages/Web";
 // import Base from "./Components/base";
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
       {/* <Base /> */}
       <Web />
     </>
-  )
+  );
 }
 
 export default App;

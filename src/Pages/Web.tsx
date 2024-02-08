@@ -6,18 +6,31 @@ export default function Web() {
 
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
-      console.log(event)
       if (event.key === "ArrowRight") {
         setSelectedHorizontal((prev) => prev + 1);
       }
       if (event.key === "ArrowLeft") {
-        setSelectedHorizontal((prev) => (prev - 1 < 0 ? 0 : prev - 1));
+        setSelectedHorizontal((prev) => {
+          if (prev - 1 < 0) {
+            prev = 3;
+          } else {
+            prev -= 1;
+          }
+          return prev;
+        });
       }
       if (event.key === "ArrowDown") {
         setSelectedVertical((prev) => prev + 1);
       }
       if (event.key === "ArrowUp") {
-        setSelectedVertical((prev) => (prev - 1 < 0 ? 0 : prev - 1));
+        setSelectedVertical((prev) => {
+          if (prev - 1 < 0) {
+            prev = 1;
+          } else {
+            prev -= 1;
+          }
+          return prev;
+        });
       }
     };
 
@@ -113,23 +126,25 @@ export default function Web() {
   }
 
   const MiniScreenContent = [
-    (
-      <>
-        <p>I am an electrical engineer by degree but software developer by choice. Ever since I was little I have had a good imagination, so to use it to build projects is what attracted me to become a developer. I am passionate about learning new technologies and using them to realize different ideas.</p>
-      </>
-    ),
-    (
-      <>
-        <h1>Find me on:</h1>
-        <br />
-        <ul className={variant}>
-          <li>Github</li>
-          <li>LinkedIn</li>
-        </ul>
-        <br />
-        <h1>Resume Download</h1>
-      </>
-    ),
+    <>
+      <p>
+        I am an electrical engineer by degree but software developer by choice.
+        Ever since I was little I have had a good imagination, so to use it to
+        build projects is what attracted me to become a developer. I am
+        passionate about learning new technologies and using them to realize
+        different ideas.
+      </p>
+    </>,
+    <>
+      <h1>Find me on:</h1>
+      <br />
+      <ul className={variant}>
+        <li>Github</li>
+        <li>LinkedIn</li>
+      </ul>
+      <br />
+      <h1>Resume Download</h1>
+    </>,
   ];
 
   return (
@@ -140,11 +155,10 @@ export default function Web() {
             <VerticalSelectorList />
           </div>
           <div className="border border-gold-600 h-full rounded-xl w-2/6 ml-5 p-10 break-words">
-            {MiniScreenContent.filter((_val,index) => {
-              if(SelectedVertical % MiniScreenContent.length == index){
-                return true
+            {MiniScreenContent.filter((_val, index) => {
+              if (SelectedVertical % MiniScreenContent.length == index) {
+                return true;
               }
-              
             })}
           </div>
         </div>
